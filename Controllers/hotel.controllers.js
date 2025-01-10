@@ -29,5 +29,16 @@ const getSingleHotel = async (req,res) => {
   }
 }
 
+const getHotelsBySearch = async (req,res) => {
+  let {city} = req?.params
+  try{
+    let hotelsData = await Hotels.find({city: city})
+    res.status(201).json(hotelsData)
+  }catch(err){
+    req.status(500).json({message: err.message})
+  }
+}
 
-export {getHotels,getSingleHotel}
+
+
+export {getHotels,getSingleHotel,getHotelsBySearch}
