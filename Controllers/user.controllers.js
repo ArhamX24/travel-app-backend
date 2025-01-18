@@ -44,5 +44,55 @@ let login = async (req,res) => {
   }
 }
 
+const getUser = (req,res) => {
+  if(!req?.user){
+    return res.status(401).json({result: false, message: "Unauthorized"})
+  }else{
+    return res.send({result: true, message: "User Found", data: req.user})
+  }
+}
 
-export {signup, login}
+const updateUser = async (req,res) => {
+  if(!req?.user){
+    return res.status(401).json({result: false, message: "Unauthorized"})
+  }else{
+    try {
+      let userData = req?.user;
+      let newUserData = req?.body;
+      let updatedUser = await User.findByIdAndUpdate(userData._id, newUserData, {new: true});
+      return res.send({result: true, message: "User Updated Successfully", data: updatedUser})
+    } catch (error) {
+      return res.status(500).json({result: false, message:error.message})
+    }
+  }
+}
+
+const deleteUser = async (req,res) => {
+  if(!req?.user){
+    return res.status(401).json({result: false, message: "Unauthorized"})
+  }else{
+    try {
+      let userData = req?.user;
+      let deletedUser = await User.findByIdAndDelete(userData._id);
+      return res.clearCookie("Token", cookieOption).send({result: true, message: "User Deleted Successfully", data: deletedUser})
+    } catch (error) {
+      return res.status(500).json({result: false, message:error.message})
+    }
+  }
+}
+
+const logout = (req,res) => {
+  if(!req?.user){
+    return res.status(401).json({result: false, message: "Unauthorized"})
+  }else{
+    try {
+      return res.clearCookie("Token", cookieOption).send({result: true, message: "Logout Success"})
+    } catch (error) {
+      return res.status(500).json({result: false, message:error.message})
+    }
+  }
+}
+
+
+
+export {signup, login, getUser, updateUser, deleteUser, logout}

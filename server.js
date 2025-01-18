@@ -6,10 +6,8 @@ import WishlistRouter from "./Routes/wishlist.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-
 let server = express();
 const PORT = 8080;
-
 
 server.use(express.json())
 server.use(urlencoded({extended:true}))
