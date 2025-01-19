@@ -14,10 +14,10 @@ const auth = async (req,res,next) => {
         req.user = user;
         next();
       }else{
-        return res.status(403).json({message: "Not Authenticated"});
+        return res.status(403).send({message: "Not Authenticated"});
       }
   } catch (error) {
-    return res.status(500).json({message :error.message})
+    return res.status(500).send({message :error.message})
   }
 }
 
