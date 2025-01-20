@@ -6,7 +6,7 @@ const UserRouter = express.Router();
 
 UserRouter.post("/signup", signup)
 .post("/login",login )
-.get("/getuser", auth, getUser)
+.get("/getuser", getUser)
 .patch("/update", auth, updateUser)
 .delete("/delete", auth, deleteUser)
 .post("/logout", auth, logout)
