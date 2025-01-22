@@ -5,7 +5,7 @@ let cookieOption = {
     domain : "http://localhost:5173",
     httpOnly: true,
     secure: true,
-    samesite: 'none'
+    sameSite: 'none'
 }
 
 let signup = async (req,res) => {
