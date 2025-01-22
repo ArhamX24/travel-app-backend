@@ -44,12 +44,18 @@ let login = async (req,res) => {
   }
 }
 
-const getUser = (req,res) => {
-  if(!req?.user){
-    return res.status(401).send({result: false, message: "Unauthorized"})
-  }else{
-    return res.send({result: true, message: "User Found", data: req.user})
-  }
+const getUser = async (req,res) => {
+  // if(!req?.user){
+  //   return res.status(401).send({result: false, message: "Unauthorized"})
+  // }else{
+  //   return res.send({result: true, message: "User Found", data: req.user})
+  // }
+
+  let {email} = req?.body;
+
+  let userData = await User.findOne({email: email});
+
+  return res.send({result: true, message: "User Found", data: userData})
 }
 
 const updateUser = async (req,res) => {
