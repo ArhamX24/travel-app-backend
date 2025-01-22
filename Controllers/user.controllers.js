@@ -1,6 +1,8 @@
 import User from "../Model/user.model.js";
 
 let cookieOption = {
+    path: "/",
+    domain : "http://localhost:5173",
     httpOnly: true,
     secure: true,
     samesite: 'none'
