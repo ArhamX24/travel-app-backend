@@ -13,7 +13,8 @@ server.use(express.json())
 server.use(urlencoded({extended:true}))
 server.use(cookieParser());
 server.use(cors({
-    origin: "https://hikestravels.netlify.app",
+    // origin: "https://hikestravels.netlify.app",
+    origin: "http://localhost:5173",
     credentials: true
 }));
 server.use("/hotels",HotelRouter)
